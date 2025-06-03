@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Actualizar Zapato: {{ zapato.nombre }}</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar cambios</button>
+</form>
+
+<a href="{% url 'lista_inventario' %}">Volver al inventario</a>
+{% endblock %}

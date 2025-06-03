@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>📊 Reportes de Ventas</h2>
+
+<h3>🗓 Total Vendido por Día</h3>
+<table>
+    <tr><th>Fecha</th><th>Total Vendido</th></tr>
+    {% for item in ventas_por_dia %}
+    <tr>
+        <td>{{ item.fecha }}</td>
+        <td>${{ item.total_dia|floatformat:0 }}</td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="2">No hay ventas registradas.</td></tr>
+    {% endfor %}
+</table>
+
+<h3>👟 Total Vendido por Producto</h3>
+<table>
+    <tr><th>Zapato</th><th>Total Vendido</th></tr>
+    {% for item in ventas_por_producto %}
+    <tr>
+        <td>{{ item.nombre }}</td>
+        <td>${{ item.total_vendido|floatformat:0 }}</td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="2">No hay ventas registradas.</td></tr>
+    {% endfor %}
+</table>
+
+<h3>👤 Total Vendido por Vendedor</h3>
+<table>
+    <tr><th>Vendedor</th><th>Total Vendido</th></tr>
+    {% for item in ventas_por_vendedor %}
+    <tr>
+        <td>{{ item.nombre }}</td>
+        <td>${{ item.total_vendedor|floatformat:0 }}</td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="2">No hay ventas registradas.</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,59 @@
+<!-- templates/sales/historial_ventas.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Historial de Ventas</h2>
+
+<form method="get">
+  <label>Zapato:</label>
+  <select name="zapato">
+    <option value="">Todos</option>
+    {% for zapato in zapatos %}
+      <option value="{{ zapato.id }}" {% if filtros.zapato_id == zapato.id|stringformat:"s" %}selected{% endif %}>{{ zapato.nombre }}</option>
+    {% endfor %}
+  </select>
+
+  <label>Fecha inicio:</label>
+  <input type="date" name="fecha_inicio" value="{{ filtros.fecha_inicio }}">
+
+  <label>Fecha fin:</label>
+  <input type="date" name="fecha_fin" value="{{ filtros.fecha_fin }}">
+
+  <button type="submit">Filtrar</button>
+</form>
+
+{% if ventas %}
+    <table border="1" cellpadding="8" cellspacing="0">
+        <thead>
+            <tr>
+                <th>ID Venta</th>
+                <th>Fecha</th>
+                <th>Vendedor</th>
+                <th>Total</th>
+                <th>Detalles</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for venta in ventas %}
+            <tr>
+                <td>{{ venta.id }}</td>
+                <td>{{ venta.fecha|date:"d/m/Y H:i" }}</td>
+                <td>{{ venta.vendedor.username }}</td>
+                <td>${{ venta.total }}</td>
+                <td>
+                    <ul>
+                        {% for detalle in venta.detalles.all %}
+                        <li>{{ detalle.zapato.nombre }} - Cantidad: {{ detalle.cantidad }} - Precio unitario: ${{ detalle.precio_unitario }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No se encontraron ventas registradas.</p>
+{% endif %}
+
+{% endblock %}

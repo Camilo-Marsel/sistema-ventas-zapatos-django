@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Eliminar Zapato</h2>
+
+<p>¿Seguro que deseas eliminar el zapato "{{ zapato.nombre }}"?</p>
+
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit">Sí, eliminar</button>
+    <a href="{% url 'lista_inventario' %}">Cancelar</a>
+</form>
+{% endblock %}

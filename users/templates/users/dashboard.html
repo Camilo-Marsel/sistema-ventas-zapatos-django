@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<h2>Bienvenido, {{ request.user.username }}</h2>
+
+
+{% if user.is_authenticated %}
+    {% if user.groups.all.0.name == "Administrador" %}
+        <h3>Administrador</h3>
+        <ul>
+            <li><a href="/admin/" class="btn btn-info">Panel de administración</a></li>
+            <li><a href="/inventario/" class="btn btn-info">Gestión de inventario</a></li>
+            <li><a href="/ventas/historial/" class="btn btn-info">Gestión de ventas</a></li>
+            <li><a href="{% url 'reportes' %}" class="btn btn-info">Ver Reportes</a></li>
+            <li><a href="/ventas/crear/" class="btn btn-success">Abrir caja</a></li>
+        </ul>
+
+    {% elif user.groups.all.0.name == "Inventarista" %}
+        <h3>Encargado de Inventario</h3>
+        <ul>
+            <li><a href="/inventario/agregar/">Agregar producto</a></li>
+            <li><a href="/inventario/">Ver inventario</a></li>
+        </ul>
+
+    {% elif user.groups.all.0.name == "Vendedor" %}
+        <h3>Vendedor</h3>
+        <ul>
+            <li><a href="/ventas/crear_venta/" class="btn btn-success">Abrir caja</a></li>
+            <li><a href="/ventas/historial_ventas/" class="btn btn-info">Historial de ventas</a></li>
+        </ul>
+    
+    {% else %}
+    <li><strong>No tienes un rol asignado.</strong></li>
+    {% endif %}
+    
+{% endif %}
+
+
+    
+
+
+{% endblock %}
