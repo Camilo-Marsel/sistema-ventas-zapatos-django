@@ -1,0 +1,138 @@
+/* ==========================
+    Global styles
+========================== */
+
+body {
+    background-color:  #aee7ea;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+}
+
+/* ==========================
+    Navbar
+========================== */
+
+.navbar {
+    background-color: #8c52ff, #5ce1e6;
+    box-shadow: 0 2px 8px rgba(146, 97, 210, 0.1);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.4rem;
+}
+
+.navbar .btn {
+    font-weight: 600;
+    border-radius: 8px;
+}
+
+/* ==========================
+    Buttons
+========================== */
+
+/* Botón primario: gradiente azul-morado */
+.btn-primary {
+    background: linear-gradient(to right, #5a68f0, #9146ff);
+    border: none;
+    color:  #ffffff;
+    font-weight: 600;
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(to right, #4a58e0, #7b35e5);
+}
+
+/* Botón success: verde */
+.btn-success {
+    background: linear-gradient(to right, #20c997, #38d39f);
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+.btn-success:hover {
+    background: linear-gradient(to right, #17b58c, #2ec98a);
+}
+
+/* ==========================
+    Cards / Containers
+========================== */
+
+.dashboard-container, .login-container {
+    background-color: #fff;
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+/* ==========================
+    Headings / Titles
+========================== */
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    color: #333;
+}
+
+/* Título del login */
+.login-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.login-subtitle {
+    font-size: 1.1rem;
+    font-weight: 600;
+    background: linear-gradient(to right, #5a68f0, #20c997);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 25px;
+}
+
+/* ==========================
+    Form controls
+========================== */
+
+.form-control {
+    border-radius: 10px;
+    padding-left: 40px;
+    height: 45px;
+    box-shadow: none !important;
+    border: 1px solid #ddd;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    font-size: 1.2rem;
+}
+
+/* ==========================
+    Footer / Misc
+========================== */
+
+/* Small footer text */
+.footer-text {
+    font-size: 0.85rem;
+    color: #777;
+    margin-top: 20px;
+}
+

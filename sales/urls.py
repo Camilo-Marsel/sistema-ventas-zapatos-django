@@ -1,11 +1,10 @@
-# sales/urls.py
-
 from django.urls import path
-from .views import  crear_venta, historial_ventas, reportes
+from . import views
+
+app_name = 'sales'
 
 urlpatterns = [
-    #path('', crear_venta, name='crear_venta'),
-    path('crear/', crear_venta, name='crear_venta'),
-    path('historial/', historial_ventas, name='historial_ventas'),
-    path('reportes/', reportes, name='reportes'),
+    path('crear/', views.crear_venta, name='crear_venta'),
+    path('historial_ventas/', views.historial_ventas, name='historial_ventas'),
+    path('reportes/', views.reportes, name='reportes'),
 ]

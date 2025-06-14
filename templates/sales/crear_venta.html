@@ -1,36 +1,35 @@
-<!-- templates/sales/crear_venta.html -->
-
 {% extends "base.html" %}
-{% load static %}
 
 {% block content %}
-<h2>Registrar Venta</h2>
+<h2>Abrir Caja - Crear Venta</h2>
 
-{% if messages %}
-  {% for message in messages %}
-    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
-      {{ message }}
-    </div>
-  {% endfor %}
-{% endif %}
-
-
-<form method="POST">
+<form method="post" novalidate>
     {% csrf_token %}
     {{ form.as_p }}
 
     {{ formset.management_form }}
-    <table>
-        {% for form in formset %}
-        <tr>
-            <td>{{ form.zapato.label_tag }} {{ form.zapato }}</td>
-            <td>{{ form.cantidad.label_tag }} {{ form.cantidad }}</td>
-            <td>{% if formset.can_delete %}{{ form.DELETE }} Eliminar{% endif %}</td>
-        </tr>
-        {% endfor %}
-    </table>
+    <p>Total formularios: {{ formset.total_form_count }}</p>
 
-    <button type="submit">Guardar Venta</button>
+    {% for form in formset %}
+        <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+            {{ form.id }}
+            <p>{{ form.zapato.label_tag }}<br>{{ form.zapato }}</p>
+            <p>{{ form.cantidad.label_tag }}<br>{{ form.cantidad }}</p>
+            {% if form.DELETE %}
+                <p>{{ form.DELETE.label_tag }} {{ form.DELETE }}</p>
+            {% endif %}
+            {% for error in form.errors %}
+                <p style="color:red;">{{ error }}</p>
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-success">Guardar Venta</button>
 </form>
 
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+{% endif %}
 {% endblock %}

@@ -1,6 +1,7 @@
-# inventory/urls.py
 from django.urls import path
 from .views import actualizar_zapato, lista_inventario, agregar_zapato, eliminar_zapato
+
+app_name = 'inventory'
 
 urlpatterns = [
     path('', lista_inventario, name='lista_inventario'),

@@ -1,7 +1,5 @@
-# sales/forms.py
 from django import forms
 from .models import Sale, SaleDetail
-from inventory.models import Shoe
 from django.forms import inlineformset_factory
 
 class SaleForm(forms.ModelForm):
@@ -21,3 +19,4 @@ SaleDetailFormSet = inlineformset_factory(
     extra=1,
     can_delete=True
 )
+

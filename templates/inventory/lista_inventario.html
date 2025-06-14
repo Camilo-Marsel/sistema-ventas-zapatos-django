@@ -2,7 +2,7 @@
 {% block content %}
 <h2>Inventario de Zapatos</h2>
 
-<a href="{% url 'agregar_zapato' %}">Agregar nuevo zapato</a>
+<a href="{% url 'inventory:agregar_zapato' %}">Agregar nuevo zapato</a>
 
 <table border="1" cellpadding="8" cellspacing="0">
     <thead>
@@ -24,9 +24,8 @@
             <td>{{ zapato.cantidad }}</td>
             <td>${{ zapato.precio }}</td>
             <td>
-                <a href="{% url 'actualizar_zapato' zapato.pk %}">Editar</a> |
-                <a href="{% url 'eliminar_zapato' zapato.pk %}" onclick="return confirm('¿Estás seguro de eliminar este zapato?');">Eliminar</a>
-
+                <a href="{% url 'inventory:actualizar_zapato' zapato.pk %}">Editar</a> |
+                <a href="{% url 'inventory:eliminar_zapato' zapato.pk %}" onclick="return confirm('¿Estás seguro de eliminar este zapato?');">Eliminar</a>
             </td>
         </tr>
         {% endfor %}

@@ -1,43 +1,35 @@
 {% extends "base.html" %}
-{% load static %}
 
 {% block content %}
-<h2>Bienvenido, {{ request.user.username }}</h2>
-
-
-{% if user.is_authenticated %}
-    {% if user.groups.all.0.name == "Administrador" %}
-        <h3>Administrador</h3>
-        <ul>
-            <li><a href="/admin/" class="btn btn-info">Panel de administración</a></li>
-            <li><a href="/inventario/" class="btn btn-info">Gestión de inventario</a></li>
-            <li><a href="/ventas/historial/" class="btn btn-info">Gestión de ventas</a></li>
-            <li><a href="{% url 'reportes' %}" class="btn btn-info">Ver Reportes</a></li>
-            <li><a href="/ventas/crear/" class="btn btn-success">Abrir caja</a></li>
-        </ul>
-
-    {% elif user.groups.all.0.name == "Inventarista" %}
-        <h3>Encargado de Inventario</h3>
-        <ul>
-            <li><a href="/inventario/agregar/">Agregar producto</a></li>
-            <li><a href="/inventario/">Ver inventario</a></li>
-        </ul>
-
-    {% elif user.groups.all.0.name == "Vendedor" %}
-        <h3>Vendedor</h3>
-        <ul>
-            <li><a href="/ventas/crear_venta/" class="btn btn-success">Abrir caja</a></li>
-            <li><a href="/ventas/historial_ventas/" class="btn btn-info">Historial de ventas</a></li>
-        </ul>
-    
-    {% else %}
-    <li><strong>No tienes un rol asignado.</strong></li>
+<div class="container mt-4">
+    <!-- Tu código de botones aquí -->
+    {% if user.is_authenticated %}
+        {% if request.user.role == "admin" %}
+            <h3>Administrador</h3>
+            <div class="d-grid gap-3">
+                <a href="/admin/" class="btn btn-primary btn-custom"><i class="bi bi-gear-fill"></i> Panel de administración</a>
+                <a href="{% url 'inventory:lista_inventario' %}" class="btn btn-primary btn-custom"><i class="bi bi-box-seam"></i> Gestión de inventario</a>
+                <a href="{% url 'sales:historial_ventas' %}" class="btn btn-primary btn-custom"><i class="bi bi-receipt-cutoff"></i> Gestión de ventas</a>
+                <a href="{% url 'sales:reportes' %}" class="btn btn-primary btn-custom"><i class="bi bi-graph-up"></i> Ver Reportes</a>
+                <a href="{% url 'sales:crear_venta' %}" class="btn btn-success btn-custom"><i class="bi bi-cash-register"></i> Abrir caja</a>
+            </div>
+        {% elif request.user.role == "inventario" %}
+            <h3>Encargado de Inventario</h3>
+            <div class="d-grid gap-3">
+                <a href="{% url 'inventory:agregar_zapato' %}" class="btn btn-primary btn-custom"><i class="bi bi-plus-circle"></i> Agregar producto</a>
+                <a href="{% url 'inventory:lista_inventario' %}" class="btn btn-primary btn-custom"><i class="bi bi-box-seam"></i> Ver inventario</a>
+            </div>
+        {% elif request.user.role == "vendedor" %}
+            <h3>Vendedor</h3>
+            <div class="d-grid gap-3">
+                <a href="{% url 'sales:crear_venta' %}" class="btn btn-success btn-custom"><i class="bi bi-cash-register"></i> Abrir caja</a>
+                <a href="{% url 'sales:historial_ventas' %}" class="btn btn-primary btn-custom"><i class="bi bi-receipt"></i> Historial de ventas</a>
+            </div>
+        {% else %}
+            <div class="alert alert-warning mt-4">
+                No tienes un rol asignado.
+            </div>
+        {% endif %}
     {% endif %}
-    
-{% endif %}
-
-
-    
-
-
+</div>
 {% endblock %}
